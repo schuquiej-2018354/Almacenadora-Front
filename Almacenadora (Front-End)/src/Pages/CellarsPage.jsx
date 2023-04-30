@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { TableCellars } from '../components/table/TableCellars';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Navbar } from '../components/NavBar/Navbar.jsx';
+import { Navbar } from '../components/Navbar';
 
 
 export const CellarsPage = () => {
@@ -38,30 +38,17 @@ export const CellarsPage = () => {
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col">
-                        <div className="e-tabs mb-3 px-3">
-                            <ul className="nav nav-tabs">
-                                <li className="nav-item"><a className="nav-link active bg-info">Cellars</a></li>
-                                <li className="nav-item">
-                                    <Link to={'/clients'} className="nav-link active">
-                                        Clients
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/accounts'} className="nav-link active">
-                                        Accounts
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/services'} className="nav-link active">
-                                        Services
-                                    </Link>
-                                </li>
-                            </ul>
+                        <div className="card" style={{background: '#d1e8ee'}}>
+                            <div className="card-title">
+                                <h1 className="text-center fs-1">Cellars</h1>
+                            </div>
                         </div>
+                        <br />
+                        <hr />
+                        <br />
                         <div className="row flex-lg-nowrap">
                             <div className="col mb-3">
                                 <div className="e-panel card">
-                                    <p className="text-center fs-1">Cellars</p>
                                     <div className="card-body">
                                         <div className="row align-items-center pt-4 pb-3">
                                             <div className="col-md-4 form-floating mb-3">
@@ -77,6 +64,9 @@ export const CellarsPage = () => {
                                                 <Link to={'/addCellar'}>
                                                     <button className="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">New Cellar</button>
                                                 </Link>
+                                                <Link to={'/crud1'}>
+                                                    <button className="btn btn-danger btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">Exit</button>
+                                                </Link>
                                             </div>
                                         </div>
                                         <div>
@@ -84,11 +74,11 @@ export const CellarsPage = () => {
                                                 <div className="table-responsive table-lg mt-3">
                                                     <table className="table table-bordered">
                                                         <thead>
-                                                            <tr>
-                                                                <th>Photo</th>
+                                                            <tr className=''>
+                                                                <th><p className='justify-content-center'>Photo</p></th>
                                                                 <th>Name</th>
                                                                 <th>Description</th>
-                                                                <th> Location</th>
+                                                                <th>Location</th>
                                                                 <th>Size</th>
                                                                 <th>Availability</th>
                                                                 <th>Price</th>

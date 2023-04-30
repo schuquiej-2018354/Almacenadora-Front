@@ -1,8 +1,10 @@
 import React from 'react'
-
+import { Navbar } from '../components/Navbar';
 export const ProfilePage = () => {
     return (
         <>
+            <Navbar></Navbar>
+            <br /><br />
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col-12 col-lg-auto mb-3" /* style="width: 200px;" */>
@@ -30,6 +32,16 @@ export const ProfilePage = () => {
                                     </a></li>
                                 </ul>
                             </div>
+                                    <div className="dropdown">
+                                        <button className="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Dropdown
+                                        </button>
+                                        <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <button className="dropdown-item" type="button">Action</button>
+                                            <button className="dropdown-item" type="button">Another action</button>
+                                            <button className="dropdown-item" type="button">Something else here</button>
+                                        </div>
+                                    </div>                                    
                         </div>
                     </div>
                     <div className="col">
@@ -91,23 +103,18 @@ export const ProfilePage = () => {
                                                         <div className="row">
                                                             <div className="col d-flex justify-content-end">
                                                                 <button className="btn btn-primary" type="submit">Save Changes</button>
+                                                                <button className="btn btn-block btn-danger">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                                                                    <path fillRule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+                                                                    <path fillRule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                                                                </svg>
+                                                                    <span>Logout</span>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-3 mb-3">
-                                <div className="card mb-3">
-                                    <div className="card-body">
-                                        <div className="px-xl-3">
-                                            <button className="btn btn-block btn-secondary">
-                                                <i className="fa fa-sign-out"></i>
-                                                <span>Logout</span>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>

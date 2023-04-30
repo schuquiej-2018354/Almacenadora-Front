@@ -41,7 +41,7 @@ export const LoginPage = () => {
                         width: '100vw',
                         height: '100vh'
                     }}>
-                    <div className="container" style={{ width: '100%', height: 'auto' }}>
+                    <div className="container" style={{ width: '100%', height: 'auto', }}>
                         <div className="row gx-lg-5 align-items-center" style={{ width: '60%', justifyContent: 'space-between', margin: '0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,  -50%)' }}>
                             <div className="col-lg-6 mb-5 mb-lg-0">
                                 <h1 className="my-4 display-3 fw-bold ls-tight">
@@ -73,16 +73,16 @@ export const LoginPage = () => {
                                                 <input onChange={loginHandlChange} type="password" id="form3Example4" className="form-control" name="password" />
                                                 <label className="form-label" htmlFor="form3Example4">Password</label>
                                             </div>
-                                            <Link to={'/'}>
+                                            <Link to={'/main'}>
                                                 <button onClick={(e) => login(e)} className="btn btn-primary btn-block mb-6">
                                                     Sign up
                                                 </button>
                                             </Link>
-                                            <Link to={'/'}>
-                                                <button className="btn btn-primary btn-block mb-6">
-                                                    Cancel
-                                                </button>
-                                            </Link>
+                                            <div>
+                                                <Link to={'/register'}>
+                                                    Register
+                                                </Link>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

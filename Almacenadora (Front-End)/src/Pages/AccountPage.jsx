@@ -38,33 +38,19 @@ export const AccountPage = () => {
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col">
-                        <div className="e-tabs mb-3 px-3">
-                            <ul className="nav nav-tabs">
-                                <li className="nav-item">
-                                    <Link to={'/cellar'} className="nav-link active">
-                                        Cellars
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/clients'} className="nav-link active">
-                                        Clients
-                                    </Link>
-                                </li>
-                                <li className="nav-item"><a className="nav-link active bg-info">Accounts</a></li>
-                                <li className="nav-item">
-                                    <Link to={'/services'} className="nav-link active">
-                                        Services
-                                    </Link>
-                                </li>
-                            </ul>
+                    <div className="card" style={{background: '#d1e8ee'}}>
+                            <div className="card-title">
+                                <h1 className="text-center fs-1">Accounts</h1>
+                            </div>
                         </div>
+                        <br />
+                        <hr />
+                        <br />
                         <div className="row flex-lg-nowrap">
                             <div className="col mb-3">
                                 <div className="e-panel card">
                                     <div className="card-body">
-                                        <div className="card-title">
-                                            <h6 className="mr-2"><span>Accounts</span><small className="px-1">Be a wise leader</small></h6>
-                                        </div>
+                                        
                                         <div className="row align-items-center pt-4 pb-3">
                                             <div className="col-md-4 form-floating mb-3">
                                                 <input id='inputSearch' className="form-control" type="text" placeholder="Name" defaultValue="" />
@@ -78,6 +64,9 @@ export const AccountPage = () => {
                                             <div className="col-md-2 offset-md-6">
                                                 <Link to={'/addAccount'}>
                                                     <button className="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">New Account</button>
+                                                </Link>
+                                                <Link to={'/crud1'}>
+                                                    <button className="btn btn-danger btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">Exit</button>
                                                 </Link>
                                             </div>
                                         </div>

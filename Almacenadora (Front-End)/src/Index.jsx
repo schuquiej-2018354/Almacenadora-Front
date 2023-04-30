@@ -9,7 +9,7 @@ import { UpdateCellar } from './components/Update/UpdateCellar';
 import { NotFoundPage } from './Pages/NotFoundPage';
 import { LoginPage } from './Pages/LoginPage';
 import { RegisterPage } from './Pages/RegisterPage';
-import { MainPage } from './Pages/MainPage/MainPage';
+import { MainPage } from './Pages/MainPage';
 
 export const Index = () => {
     const routes = createBrowserRouter([
@@ -20,15 +20,15 @@ export const Index = () => {
             children: [
                 {
                     path: '/',
-                    element: <MainPage></MainPage>
+                    element: <HomePage></HomePage>
                 },
                 {
                     path: '/login',
                     element: <LoginPage></LoginPage>
                 },
                 {
-                    path: '/home',
-                    element: <HomePage></HomePage>
+                    path: '/main',
+                    element: <MainPage></MainPage>
                 },
                 {
                     path: '/register',
@@ -40,7 +40,7 @@ export const Index = () => {
                 },
                 {
                     path: '/crud',
-                    element: <CrudPage></CrudPage>,
+                    element: <CrudPage></CrudPage>
                 },
                 {
                     path: '/addCellar',

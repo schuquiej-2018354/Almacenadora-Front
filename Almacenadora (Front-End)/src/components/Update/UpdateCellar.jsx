@@ -11,7 +11,7 @@ export const UpdateCellar = () => {
 
     const getTableCellar = async () => {
         try {
-            const { data } = await axios(`http://localhost:3200/cellar/getCellars/${id}`);
+            const { data } = await axios.get(`http://localhost:3200/cellar/getById/${id}`);
             setTableCellar(data.cellar)
         } catch (e) {
             console.log(e);
@@ -28,10 +28,11 @@ export const UpdateCellar = () => {
                 availability: document.getElementById('inputAvailability').value,
                 price: document.getElementById('inputPrice').value
             }
-            const { data } = await axios.put(`http://localhost:3200/cellar/update${id}`, updatedCellar)
-            console.log(`${data.message} ${data.updatedCellar.name}`);
+            const { data } = await axios.put(`http://localhost:3200/cellar/update/${id}`, updatedCellar)
+            /* console.log(`${data.message} ${data.updatedCellar.name}`); */
         } catch (e) {
-            console.log(e);
+            console.error(e);
+            
         }
     }
 
@@ -42,7 +43,7 @@ export const UpdateCellar = () => {
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-xl-9">
-                            <h1 className="text-white mb-4">Add Cellar</h1>
+                            <h1 className="text-white mb-4">Update Cellar</h1>
                             <div className="card" /* style="border-radius: 15px;" */>
                                 <div className="card-body">
                                     <div className="row align-items-center pt-4 pb-3">
@@ -93,7 +94,7 @@ export const UpdateCellar = () => {
                                     <div className="px-5 py-4">
                                         <div className="row">
                                             <div className="col">
-                                                <button onClick={() => updateCellar()} type="submit" className="btn btn-primary btn-lg">Register</button>
+                                                <button onClick={() => updateCellar()} type="submit" className="btn btn-primary btn-lg">Update</button>
                                             </div>
                                             <div className="col">
                                                 <Link to={'/crud'}>

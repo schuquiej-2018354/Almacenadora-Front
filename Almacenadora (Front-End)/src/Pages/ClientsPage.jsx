@@ -16,15 +16,15 @@ export const ClientsPage = () => {
         }
     }
 
-    const deletClient = async (id) =>{
-        try{
+    const deletClient = async (id) => {
+        try {
             let confirmDelete = confirm("Are you sure you want to delete this hold?")
-            if(confirmDelete){
+            if (confirmDelete) {
                 const { data } = await axios.delete(`http://localhost:3200/client/delete/${id}`)
                 console.log(data);
                 getTableClients()
             }
-        }catch(e){
+        } catch (e) {
             console.log(e);
         }
     }
@@ -37,33 +37,18 @@ export const ClientsPage = () => {
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col">
-                        <div className="e-tabs mb-3 px-3">
-                            <ul className="nav nav-tabs">
-                                <li className="nav-item">
-                                    <Link to={'/cellar'} className="nav-link active">
-                                        Cellars
-                                    </Link>
-                                </li>
-                                <li className="nav-item"><a className="nav-link active bg-info">Clients</a></li>
-                                <li className="nav-item">
-                                    <Link to={'/accounts'} className="nav-link active">
-                                        Accounts
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/services'} className="nav-link active">
-                                        Services
-                                    </Link>
-                                </li>
-                            </ul>
+                        <div className="card" style={{ background: '#d1e8ee' }}>
+                            <div className="card-title">
+                                <h1 className="text-center fs-1">Clients</h1>
+                            </div>
                         </div>
+                        <br />
+                        <hr />
+                        <br />
                         <div className="row flex-lg-nowrap">
                             <div className="col mb-3">
                                 <div className="e-panel card">
                                     <div className="card-body">
-                                        <div className="card-title">
-                                            <h6 className="mr-2"><span>Clients</span></h6>
-                                        </div>
                                         <div className="row align-items-center pt-4 pb-3">
                                             <div className="col-md-4 form-floating mb-3">
                                                 <input id='inputSearch' className="form-control" type="text" placeholder="Name" defaultValue="" />
@@ -77,6 +62,9 @@ export const ClientsPage = () => {
                                             <div className="col-md-2 offset-md-6">
                                                 <Link to={'/addClient'}>
                                                     <button className="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">New Client</button>
+                                                </Link>
+                                                <Link to={'/crud1'}>
+                                                    <button className="btn btn-danger btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">Exit</button>
                                                 </Link>
                                             </div>
                                             <div>

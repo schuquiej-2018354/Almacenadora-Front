@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Navbar } from '../components/Navbar'
+import { Navbar } from '../components/NavBar/Navbar'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { TableClients } from '../components/table/TableClients'
+import { Outlet } from 'react-router-dom'
 
 export const ClientsPage = () => {
     const [tableClients, setTableClients] = useState([{}])
@@ -32,6 +33,7 @@ export const ClientsPage = () => {
     useEffect(() => getTableClients, [])
     return (
         <>
+        <Outlet></Outlet>
             <Navbar></Navbar>
             <br />
             <div className="container">

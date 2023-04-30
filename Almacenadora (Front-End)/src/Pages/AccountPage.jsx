@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navbar } from '../components/Navbar'
+import { Navbar } from '../components/NavBar/Navbar'    
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { TableAccounts } from '../components/table/TableAccounts'

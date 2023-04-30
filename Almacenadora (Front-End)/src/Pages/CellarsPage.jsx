@@ -38,26 +38,6 @@ export const CellarsPage = () => {
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col">
-                        <div className="e-tabs mb-3 px-3">
-                            <ul className="nav nav-tabs">
-                                <li className="nav-item"><a className="nav-link active bg-info">Cellars</a></li>
-                                <li className="nav-item">
-                                    <Link to={'/clients'} className="nav-link active">
-                                        Clients
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/accounts'} className="nav-link active">
-                                        Accounts
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/services'} className="nav-link active">
-                                        Services
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
                         <div className="row flex-lg-nowrap">
                             <div className="col mb-3">
                                 <div className="e-panel card">
@@ -74,7 +54,7 @@ export const CellarsPage = () => {
                                                 </label>
                                             </div>
                                             <div className="col-md-2 offset-md-6">
-                                                <Link to={'/addCellar'}>
+                                                <Link to={'addCellar'}>
                                                     <button className="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">New Cellar</button>
                                                 </Link>
                                             </div>

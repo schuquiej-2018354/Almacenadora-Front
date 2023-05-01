@@ -20,8 +20,6 @@ export const ServicesPage = () => {
     useEffect(() => getTableServices, [])
     return (
         <>
-            <Navbar></Navbar>
-            <br />
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col">

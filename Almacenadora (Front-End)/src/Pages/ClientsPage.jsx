@@ -33,8 +33,6 @@ export const ClientsPage = () => {
     useEffect(() => getTableClients, [])
     return (
         <>
-        <Outlet></Outlet>
-            <Navbar></Navbar>
             <br />
             <div className="container">
                 <div className="row flex-lg-nowrap">

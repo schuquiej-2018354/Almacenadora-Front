@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { TableCellars } from '../components/table/TableCellars';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Navbar } from '../components/NavBar/Navbar.jsx';
 
 
@@ -33,8 +33,6 @@ export const CellarsPage = () => {
 
     return (
         <>
-            <Navbar></Navbar>
-            <br />
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col">
@@ -54,7 +52,7 @@ export const CellarsPage = () => {
                                                 </label>
                                             </div>
                                             <div className="col-md-2 offset-md-6">
-                                                <Link to={'addCellar'}>
+                                                <Link to='addCellar'>
                                                     <button className="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">New Cellar</button>
                                                 </Link>
                                             </div>

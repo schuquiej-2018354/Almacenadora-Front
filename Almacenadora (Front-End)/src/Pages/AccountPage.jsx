@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navbar } from '../components/NavBar/Navbar'    
+import { Navbar } from '../components/NavBar/Navbar'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { TableAccounts } from '../components/table/TableAccounts'
@@ -16,15 +16,15 @@ export const AccountPage = () => {
         }
     }
 
-    const deleteAccount = async (id) =>{
-        try{
+    const deleteAccount = async (id) => {
+        try {
             let confirmDelete = confirm("Are you sure you want to delete this hold?")
-            if(confirmDelete){
+            if (confirmDelete) {
                 const { data } = await axios.delete(`http://localhost:3200/account/deleteAccount/${id}`)
                 console.log(data);
                 getTableAccounts()
             }
-        }catch(e){
+        } catch (e) {
             console.log(e);
         }
     }
@@ -33,8 +33,6 @@ export const AccountPage = () => {
 
     return (
         <>
-            <Navbar></Navbar>
-            <br />
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col">

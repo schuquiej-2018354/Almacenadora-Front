@@ -31,7 +31,7 @@ export const LoginPage = () => {
                 setLoggedIn(true)
                 localStorage.setItem("token", data.token)
             }
-            navigate('/crud')
+            navigate('/dashboard')
             alert(data.message);
         } catch (e) {
             alert('Invalid Credentials');

@@ -1,9 +1,9 @@
 import React from 'react'
+import './MainPage.css'
 import imageHeader from '../../Assents/fondoMain.png';
 import img1 from '../../Assents/Bodega1.jpg'
 import img2 from '../../Assents/Bodega2.png';
-import './MainPage.css'
-import { Navbar } from '../../components/NavBar/Navbar';
+import { Navbar } from '../../components/NavBar/Navbar.jsx';
 import { Footer } from '../../components/Footer/Footer'
 import { Link } from 'react-router-dom';
 
@@ -12,12 +12,13 @@ export const MainPage = () => {
     <>
       <Navbar></Navbar>
       <br />
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
       <main>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
         <section className="jumbotron text-center " style={{ backgroundImage: `url(${imageHeader})`, backgroundSize: 'cover', width: '100%', height: '100%' }}>
           <div className="col-6 align-self-center">
             <h1 className="display-4 text-white font-weight-bold" id='title'>Almacenadora KNL</h1>
-            <p className="lead text-light" id='info' style={{ marginBottom: '20px' }}>Somos una empresa de almacenamiento líder en el mercado,
+            <p className="lead text-light" id='info' style={{ marginBottom: '20px' }}>
+              Somos una empresa de almacenamiento líder en el mercado,
               dedicada a proporcionar soluciones integrales de almacenamiento y gestión
               de mercancías. Nuestro objetivo es ayudar a nuestros clientes a optimizar sus
               operaciones logísticas y mejorar su eficiencia en la cadena de suministro.</p>
@@ -26,13 +27,13 @@ export const MainPage = () => {
             </Link>
           </div>
         </section>
+
         <div className="container mt-5" style={{ marginBottom: '10vh' }}>
           <h1 className="text-center text-uppercase text-muted">Acerca de Nosotros</h1>
           <p className="text-center">¡Confía en nosotros para guardar tus productos con profesionalismo y seguridad!</p>
           <div className="row mt-4">
-            <div className="col-md-6" style={{ backgroundImage: `url(${img1})`, height: '20em' }}>
-            </div>
-            <div className="col-md-6" style={{ backgroundColor: '#faba668e', padding: '5vh', borderTopRightRadius: '50px' }}>
+            <div className="col-md-6" style={{ backgroundImage: `url(${img1})`, height: '23em', backgroundSize: 'cover' }}></div>
+            <div className="col-md-6" style={{ backgroundColor: '#faba668e', padding: '5vh', borderTopRightRadius: '50px', height: '23em' }}>
               <h2 className='text-center' style={{ display: ' flex', alignItems: 'center', justifyContent: 'center', minHeight: '15vh' }} >¿Qué ofrecemos?</h2>
               <p className='text-center' style={{ display: ' flex', alignItems: 'center', justifyContent: 'center' }}>
                 Somos una almacenadora líder en el mercado, especializada en brindar soluciones de almacenamiento y logística
@@ -41,7 +42,7 @@ export const MainPage = () => {
             </div>
           </div>
           <div className="row mt-4">
-            <div className="col-md-6" style={{ backgroundColor: '#f77c3e8e', padding: '5vh', borderBottomLeftRadius: '50px' }}>
+            <div className="col-md-6" style={{ backgroundColor: '#f77c3e8e', padding: '5vh', borderBottomLeftRadius: '50px', height: '23em' }}>
               <h2 className='text-center' style={{ display: ' flex', alignItems: 'center', justifyContent: 'center', minHeight: '15vh' }} >¿Por qué elegirnos?</h2>
               <p className='text-center' style={{ display: ' flex', alignItems: 'center', justifyContent: 'center' }}>
                 Nuestro compromiso con la calidad y la excelencia en el servicio nos ha convertido en la opción preferida
@@ -49,14 +50,15 @@ export const MainPage = () => {
                 cliente inigualable. Ya sea que necesites almacenar productos perecederos o productos
                 de alto valor, podemos adaptarnos a tus necesidades específicas.</p>
             </div>
-            <div className="col-md-6" style={{ backgroundImage: `url(${img2})`, height: '20em' }}>
+            <div className="col-md-6" style={{ backgroundImage: `url(${img2})`, height: '23em' }}>
             </div>
           </div>
         </div>
+
         <section className='resenas'>
           <div className="container" id='resss'>
             <h2 className='text-center h1 text-white'>Reseñas de nuestros clientes</h2>
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
               <div className="carousel-inner">
                 <div className="carousel-item active">
                   <div className="d-flex justify-content-center">
@@ -69,7 +71,7 @@ export const MainPage = () => {
                                 <i className="materialIcons">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                   </svg>
                                 </i>
                               </div>
@@ -96,7 +98,7 @@ export const MainPage = () => {
                                 <i className="materialIcons">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                   </svg>
                                 </i>
                               </div>
@@ -127,7 +129,7 @@ export const MainPage = () => {
                             <div className="media">
                               <div className="mediaLeft">
                                 <i className="materialIcons">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-person-square" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                     <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" />
                                   </svg>
@@ -156,7 +158,7 @@ export const MainPage = () => {
                                 <i className="materialIcons">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                   </svg>
                                 </i>
                               </div>
@@ -189,7 +191,7 @@ export const MainPage = () => {
                                 <i className="materialIcons">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                   </svg>
                                 </i>
                               </div>
@@ -214,7 +216,7 @@ export const MainPage = () => {
                             <div className="media">
                               <div className="mediaLeft">
                                 <i className="materialIcons">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-briefcase-fill" viewBox="0 0 16 16">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-briefcase-fill" viewBox="0 0 16 16">
                                     <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z" />
                                     <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z" />
                                   </svg>
@@ -251,32 +253,30 @@ export const MainPage = () => {
           </div>
           <hr></hr>
           <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-            <form class="formulario">
+            <form className="formulario">
               <h2 className='text-center'>Añadir reseña</h2>
-              <form>
-                <h6 className='text-center'>Calificación</h6>
-                <div className="star-rating">
-                  <input type="radio" id="star5" name="rating" value="5" />
-                  <label for="star5"></label>
-                  <input type="radio" id="star4" name="rating" value="4" />
-                  <label for="star4"></label>
-                  <input type="radio" id="star3" name="rating" value="3" />
-                  <label for="star3"></label>
-                  <input type="radio" id="star2" name="rating" value="2" />
-                  <label for="star2"></label>
-                  <input type="radio" id="star1" name="rating" value="1" />
-                  <label for="star1"></label>
-                </div>
-                <div class="form-group">
-                  <label for="nameInput">Nombre:</label>
-                  <input type="text" class="form-control" id="nameInput" placeholder="Ingresa tu nombre" />
-                </div>
-                <div class="form-group">
-                  <label for="commentInput">Comentario:</label>
-                  <textarea class="form-control " id="commentInput" rows="3"></textarea>
-                </div>
-                <center><button type="submit" className="btn btn-warning btn-lg">Enviar</button></center>
-              </form>
+              <h6 className='text-center'>Calificación</h6>
+              <div className="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label htmlFor="star5"></label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label htmlFor="star4"></label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label htmlFor="star3"></label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label htmlFor="star2"></label>
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label htmlFor="star1"></label>
+              </div>
+              <div className="form-group">
+                <label htmlFor="nameInput">Nombre:</label>
+                <input type="text" className="form-control" id="nameInput" placeholder="Ingresa tu nombre" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="commentInput">Comentario:</label>
+                <textarea className="form-control " id="commentInput" rows="3"></textarea>
+              </div>
+              <center><button type="submit" className="btn btn-warning btn-lg">Enviar</button></center>
             </form>
           </div>
         </section>

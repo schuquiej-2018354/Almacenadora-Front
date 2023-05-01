@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Navbar } from '../components/Navbar'
-import { Link } from 'react-router-dom'
+import { Navbar } from '../components/NavBar/Navbar'
+import { Link} from 'react-router-dom'
 import axios from 'axios'
 import { TableServices } from '../components/table/TableServices'
 
@@ -10,12 +10,14 @@ export const ServicesPage = () => {
 
     const getTableServices = async () => {
         try {
-            const { data } = await axios.get('http://localhost:3200/additional/getAdditional');
+            const { data } = await axios.get('http://localhost:3200/service/getAdditional');
             setTableServices(data.additional)
+            console.log(data.additional);
         } catch (e) {
             console.log(e);
         }
     }
+
 
     useEffect(() => getTableServices, [])
     return (
@@ -28,17 +30,17 @@ export const ServicesPage = () => {
                         <div className="e-tabs mb-3 px-3">
                             <ul className="nav nav-tabs">
                                 <li className="nav-item">
-                                    <Link to={'/cellar'} className="nav-link active">
+                                    <Link to={'/crud/cellars'} className="nav-link active">
                                         Cellars
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/clients'} className="nav-link active">
+                                    <Link to={'/crud/clients'} className="nav-link active">
                                         Clients
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/accounts'} className="nav-link active">
+                                    <Link to={'/crud/accounts'} className="nav-link active">
                                         Accounts
                                     </Link>
                                 </li>
@@ -63,7 +65,7 @@ export const ServicesPage = () => {
                                                 </label>
                                             </div>
                                             <div className="col-md-2 offset-md-6">
-                                                <Link to={'/addServices'}>
+                                                <Link to={'add'}>
                                                     <button className="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">New Services</button>
                                                 </Link>
                                             </div>
@@ -92,7 +94,7 @@ export const ServicesPage = () => {
                                                                             ></TableServices>
                                                                             <td className="text-center align-middle">
                                                                                 <div className="btn-group align-top">
-                                                                                    <Link to={'/update'} className="btn btn-sm btn-primary btn-outline-secondary badge">
+                                                                                    <Link to={`update/${_id}`} className="btn btn-sm btn-primary btn-outline-secondary badge">
                                                                                         <button className="btn badge" type="button" data-toggle="modal" data-target="#user-form-modal">
                                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                                                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />

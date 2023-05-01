@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
-import { useState } from 'react'
 import Background from '../Assents/fondo.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 export const LoginPage = () => {
+
+
+    const navigate = useNavigate();
+    const { setLoggedIn, loggedIn, setDataUser } = useContext()
+
     const [form, setform] = useState({
         username: '',
         password: ''
@@ -19,12 +24,12 @@ export const LoginPage = () => {
 
     const login = async (e) => {
         try {
+            e.preventDefault();
             const { data } = await axios.post('http://localhost:3200/user/login', form)
             if (data.token) {
                 localStorage.setItem("token", data.token)
             }
             alert(data.message);
-            window.location.reload();
         } catch (e) {
             alert('Invalid Credentials');
         }

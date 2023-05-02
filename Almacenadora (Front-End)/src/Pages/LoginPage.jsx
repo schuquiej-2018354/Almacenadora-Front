@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
-import { useState } from 'react'
 import Background from '../Assents/fondo.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../Index'
+
 
 export const LoginPage = () => {
+
+    const navigate = useNavigate()
+    const { setLoggedIn, loggedIn, setDataUser } = useContext(AuthContext)
+
     const [form, setform] = useState({
         username: '',
         password: ''
@@ -19,16 +24,19 @@ export const LoginPage = () => {
 
     const login = async (e) => {
         try {
+            e.preventDefault();
             const { data } = await axios.post('http://localhost:3200/user/login', form)
             if (data.token) {
+                setLoggedIn(true)
                 localStorage.setItem("token", data.token)
             }
+            navigate('/crud')
             alert(data.message);
-            window.location.reload();
         } catch (e) {
             alert('Invalid Credentials');
         }
     }
+
     return (
         <>
             <section className="">
@@ -41,7 +49,7 @@ export const LoginPage = () => {
                         width: '100vw',
                         height: '100vh'
                     }}>
-                    <div className="container" style={{ width: '100%', height: 'auto', }}>
+                    <div className="container" style={{ width: '100%', height: 'auto' }}>
                         <div className="row gx-lg-5 align-items-center" style={{ width: '60%', justifyContent: 'space-between', margin: '0', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,  -50%)' }}>
                             <div className="col-lg-6 mb-5 mb-lg-0">
                                 <h1 className="my-4 display-3 fw-bold ls-tight">
@@ -49,7 +57,7 @@ export const LoginPage = () => {
                                     <span className="text-primary">KINAL</span>
                                 </h1>
                                 <p style={{ color: 'hsl(217, 10%, 50.8%)' }}>
-                                    Ingresa tu nombre de usuario y contraseñapara acceder a las funcionalidades
+                                    Ingresa tu nombre de usuario y contraseña para acceder a las funcionalidades
                                 </p>
                             </div>
                             <div className="col-lg-6 mb-5 mb-lg-0"
@@ -73,15 +81,19 @@ export const LoginPage = () => {
                                                 <input onChange={loginHandlChange} type="password" id="form3Example4" className="form-control" name="password" />
                                                 <label className="form-label" htmlFor="form3Example4">Password</label>
                                             </div>
-                                            <Link to={'/main'}>
-                                                <button onClick={(e) => login(e)} className="btn btn-primary btn-block mb-6">
-                                                    Sign up
-                                                </button>
-                                            </Link>
-                                            <div>
-                                                <Link to={'/register'}>
-                                                    Register
-                                                </Link>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <div>
+                                                    <button onClick={(e) => login(e)} className="btn btn-primary btn-block mb-6">
+                                                        Sign up
+                                                    </button>
+                                                </div>
+                                                <div>
+                                                    <Link to={'/'}>
+                                                        <button className="btn btn-primary btn-block mb-6">
+                                                            Cancel
+                                                        </button>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>

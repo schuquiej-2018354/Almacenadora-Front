@@ -1,14 +1,15 @@
 import React from 'react'
-import Canvas from '../components/Canvas'
-import { Navbar } from '../components/Navbar'
+import Canvas from '../components/Canvas/Canvas'
+import { Navbar } from '../components/NavBar/Navbar.jsx'
+import { Footer } from '../components/Footer/Footer'
 
 export const HomePage = () => {
     return (
         <>
             <Navbar></Navbar>
             <br />
-            <br />
             <Canvas></Canvas>
+            <Footer></Footer>
         </>
     )
 }

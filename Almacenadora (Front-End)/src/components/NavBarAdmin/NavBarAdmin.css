@@ -44,7 +44,7 @@
 .text1 {
   text-transform: uppercase;
   font-family: "DM Sans", sans-serif;
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 700;
   height: 15px;
 }
@@ -61,12 +61,36 @@
   justify-content: space-between;
 }
 
+.icon {
+  display: flex;
+  justify-content: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  transition: all 0.2s;
+}
+
+.icon:hover {
+  transition: all 0.2s;
+  background-color: #50232e ;
+  color: rgb(255, 255, 255);
+}
+
 .search {
   width: 80px;
   border-radius: 0px 40px 40px 0px;
 }
 
-  
+.serach {
+  border: none;
+  background-color: white;
+  border-radius: 40px 0px 0px 40px;
+}
+
 
 a {
   color: inherit;
@@ -86,7 +110,7 @@ hr {
 .menu a {
   position: relative;
   display: block;
-  padding: 5px;
+  padding: 2px;
 }
 
 .menu a::before {
@@ -125,13 +149,22 @@ hr {
   transition-timing-function: cubic-bezier(0.2, 1, 0.82, 0.94);
 }
 
-.nav{
-  width: 50em;
+.nav {
+  width: 49%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  justify-content: space-around;
+}
+
+.y {
+  padding-left: 50px;
+  justify-content: left;
+}
+
+.i {
+  padding-right: 50px;
+  justify-content: right;
 }
 
 .nav-link {
@@ -140,7 +173,13 @@ hr {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 400;
-  width: 150px;
-  height: 35px;
 }
 
+.nav-link:hover {
+  color: rgb(255, 0, 0);
+}
+
+.s {
+  width: 100%;
+  display: flex;
+}

@@ -19,7 +19,10 @@ import { AddAccount } from './components/Add/AddAccount';
 import { UpdateAccount } from './components/Update/UpdateAccount';
 import { ServicesPage } from './Pages/ServicesPage';
 import { AddService } from './components/Add/AddService';
-import { Dashboard } from './components/Dashboard/Dashboard';
+import { Redirigir } from './Pages/Redirigir';
+import { UpdateService } from './components/Update/UpdateService'
+import { LeasePage } from './Pages/LeasePage'
+import { AddLease } from './components/Add/AddLease'
 
 export const AuthContext = createContext();
 
@@ -64,9 +67,13 @@ export const Index = () => {
                     element: <ProfilePage></ProfilePage>
                 },
                 {
-                    path: '/dashboard',
-                    element: loggedIn ? <Dashboard></Dashboard> : <LoginPage></LoginPage>,
+                    path: '/crud',
+                    element: <Redirigir></Redirigir>,
                     children: [
+                        {
+                            path: '',
+                            element: <CrudPage></CrudPage>
+                        },
                         {
                             path: 'cellars',
                             element: <CellarsPage></CellarsPage>,
@@ -76,26 +83,61 @@ export const Index = () => {
                             element: <AddCellars></AddCellars>
                         },
                         {
+                            path: 'cellars/update/:id',
+                            element: <UpdateCellar></UpdateCellar>
+                        },
+                        {
                             path: 'clients',
                             element: <ClientsPage></ClientsPage>
+                        },
+                        {
+                            path: 'clients/add',
+                            element: <AddClient></AddClient>
+                        },
+                        {
+                            path: 'clients/update/:id',
+                            element: <UpdateClient></UpdateClient>
                         },
                         {
                             path: 'accounts',
                             element: <AccountPage></AccountPage>
                         },
                         {
+                            path: 'accounts/add',
+                            element: <AddAccount></AddAccount>
+                        },
+                        {
+                            path: 'accounts/update/:id',
+                            element: <UpdateAccount></UpdateAccount>
+                        },
+                        {
                             path: 'services',
                             element: <ServicesPage></ServicesPage>
+                        },
+                        {
+                            path: 'services/add',
+                            element: <AddService></AddService>
+                        },
+                        {
+                            path: 'services/update/:id',
+                            element: <UpdateService></UpdateService>
+                        },
+                        {
+                            path: 'lease',
+                            element: <LeasePage></LeasePage>
+                        },
+                        {
+                            path: 'lease/addLease',
+                            element: <AddLease></AddLease>
                         }
-
                     ]
                 }
-
             ]
         }
     ])
+
     return (
-        <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+        <AuthContext.Provider value={{ setLoggedIn, loggedIn }}>
             <RouterProvider router={routes} />
         </AuthContext.Provider>
     )

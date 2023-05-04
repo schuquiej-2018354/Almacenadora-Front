@@ -8,16 +8,34 @@ import '../Assents/css/crudPages.css'
 import { NavBarAdmin } from '../components/NavBarAdmin/NavBarAdmin';
 
 export const ClientsPage = () => {
+    const [clients, setClients] = useState([{}])
     const [tableClients, setTableClients] = useState([{}])
+    const [search, setSearch] = useState("")
 
     const getTableClients = async () => {
         try {
             const { data } = await axios.get('http://localhost:3200/client/get')
+            setClients(data.client)
             setTableClients(data.client)
         } catch (e) {
             console.log(e);
         }
     }
+
+    const handleChangeSearch = (e) => {
+        setSearch(e.target.value)
+        filtrar(e.target.value)
+    }
+
+    const filtrar = (searchTerm) => {
+        var resultSearch = tableClients.filter((elemento) => {
+            if (elemento.name.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
+                return elemento
+            }
+        })
+        setClients(resultSearch)
+    }
+
 
     const deletClient = async (id) => {
         try {
@@ -50,7 +68,7 @@ export const ClientsPage = () => {
                                         </div>
                                         <div className="row align-items-center pt-4 pb-3">
                                             <div className="col-md-4 form-floating mb-3">
-                                                <input type="text" className="search-input" placeholder="Search..." />
+                                                <input type="text" className="search-input" value={search} onChange={handleChangeSearch} placeholder="Search..." />
                                                 <a href="#" className="search-btn">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
@@ -86,7 +104,7 @@ export const ClientsPage = () => {
                                                             </thead>
                                                             <tbody>
                                                                 {
-                                                                    tableClients.map(({ _id, name, surname, identification, residency }, index) => {
+                                                                    clients.map(({ _id, name, surname, identification, residency }, index) => {
                                                                         return (
                                                                             <tr key={index}>
                                                                                 <TableClients

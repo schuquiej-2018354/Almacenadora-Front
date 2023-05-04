@@ -10,7 +10,6 @@ export const AddAccount = () => {
         password: '',
         email: '',
         phone: ''
-        /* role: '' */
     })
 
     const handleChange = (e) => {

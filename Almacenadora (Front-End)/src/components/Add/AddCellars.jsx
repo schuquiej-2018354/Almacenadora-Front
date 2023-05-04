@@ -16,7 +16,8 @@ export const AddCellars = () => {
     const handleChange = (e) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            availability: document.getElementById("availability").value
         })
     }
 
@@ -68,7 +69,10 @@ export const AddCellars = () => {
                                         </div>
                                         <div className="col pe-5">
                                             <h6 className="mb-0">Availability</h6><br />
-                                            <input onChange={handleChange} name='availability' type="text" className="form-control form-control-lg" />
+                                            <select name="availability" id="availability" onChange={handleChange}>
+                                                <option value="No disponible" >No disponible</option>
+                                                <option value="Disponible" >Disponible</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <hr className="mx-n3" />

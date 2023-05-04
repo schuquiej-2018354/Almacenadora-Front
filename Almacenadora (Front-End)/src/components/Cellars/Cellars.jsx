@@ -5,7 +5,6 @@ export const Cellars = ({ name, description, location, size, availability, price
     <>
       <div className="card mb-3" style={{width: "80%", margin: " auto auto"}} >
         <div className="card-body">
-
           <div className="row g-10">
             <div className="col-md-4">
               <img src="https://www.df.cl/noticias/site/artic/20210125/imag/foto_0000000220210125121821.jpg" className="img-fluid rounded-start" alt="..." />

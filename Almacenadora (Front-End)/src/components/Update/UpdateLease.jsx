@@ -1,9 +1,12 @@
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
-export const AddLease = () => {
+export const UpdateLease = () => {
+
+    const [tableLease, setTableLease] = useState([{}])
+    const { id } = useParams()
+
     const [cellars, setCellars] = useState([{}])
     const [clients, setClients] = useState([{}])
     const [services, setServices] = useState([{}])
@@ -35,29 +38,42 @@ export const AddLease = () => {
         }
     }
 
-    const addLease = async () => {
+    const getTableLease = async () => {
         try {
-            let lease = {
+            const { data } = await axios(`http://localhost:3200/lease/getById/${id}`)
+            setTableLease(data.lease)
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const updateLease = async () => {
+        try {
+            let updatedLease = {
                 cellar: document.getElementById('inputCellar').value,
                 client: document.getElementById('inputClient').value,
                 services: document.getElementById('inputServices').value
             }
-            const { data } = await axios.post('http://localhost:3200/lease/add', lease);
-            alert(data.message);
+            const { data } = await axios.put(`http://localhost:3200/lease/update/${id}`, updatedLease)
         } catch (e) {
-            console.error(e)
+            console.log(e);
         }
     }
 
-    useEffect(() => getCellars, [])
-    useEffect(() => getClient, [])
-    useEffect(() => getServices, [])
+
+    useEffect(() => {
+        getCellars(),
+            getClient(),
+            getServices(),
+            getTableLease()
+    }, [])
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light" style={{ background: "#1abc9c" }}>
                 <div className="container-fluid">
                     <div className="collapse navbar-collapse justify-content-center" id="navbarCenteredExample" >
-                        <h1 className='text-white' style={{ fontSize: "2.5rem" }}>Add Lease</h1>
+                        <h1 className='text-white' style={{ fontSize: "2.5rem" }}>Update Lease</h1>
                     </div>
                 </div>
             </nav>
@@ -76,7 +92,7 @@ export const AddLease = () => {
                                                     {
                                                         cellars.map(({ _id, name }, i) => {
                                                             return (
-                                                                <option key={i} value={_id}>{name}</option>
+                                                                <option key={i} value={_id} defaultValue={tableLease.cellar}>{name}</option>
                                                             )
                                                         })
                                                     }
@@ -84,11 +100,11 @@ export const AddLease = () => {
                                             </div>
                                             <div className="col form-group">
                                                 <label htmlFor="inputClient" className='form-label'>Client:</label>
-                                                <select className="form-control" id="inputClient" required>
+                                                <select className="form-control" id="inputClient" required disabled>
                                                     {
                                                         clients.map(({ _id, name }, i) => {
                                                             return (
-                                                                <option key={i} value={_id}>{name}</option>
+                                                                <option key={i} value={_id} defaultValue={tableLease.client}>{name}</option>
                                                             )
                                                         })
                                                     }
@@ -98,11 +114,11 @@ export const AddLease = () => {
                                         <div className="row">
                                             <div className="col form-group">
                                                 <label htmlFor="inputServices">Additional services:</label>
-                                                <select className="form-control" id="inputServices" required>
+                                                <select className="form-control" id="inputServices" required disabled>
                                                     {
                                                         services.map(({ _id, name }, i) => {
                                                             return (
-                                                                <option key={i} value={_id}>{name}</option>
+                                                                <option key={i} value={_id} defaultValue={tableLease.services}>{name}</option>
                                                             )
                                                         })
                                                     }
@@ -112,7 +128,7 @@ export const AddLease = () => {
                                         <br />
                                         <center>
                                             <Link to={'/crud/lease'}>
-                                                <button onClick={() => addLease()} type="submit" className="btn btn-success btn-lg">Lease</button>
+                                                <button onClick={() => updateLease()} type="submit" className="btn btn-success btn-lg">Lease</button>
                                             </Link>
                                             <Link to={'/crud/lease'}>
                                                 <button type="submit" className="btn btn-danger btn-lg">Cancel</button>

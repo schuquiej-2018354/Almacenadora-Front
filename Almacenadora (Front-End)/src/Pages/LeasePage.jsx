@@ -59,7 +59,6 @@ export const LeasePage = () => {
                                                         <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
                                                     </svg>
                                                 </Link>
-
                                                 <Link to={'/crud'} className="exit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-box-arrow-left" viewBox="0 0 16 16">
                                                         <path fillRule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
@@ -87,14 +86,14 @@ export const LeasePage = () => {
                                                                     return (
                                                                         <tr key={index}>
                                                                             <TableLease
-                                                                                cellar={cellar}
+                                                                                cellar={cellar?.name}
                                                                                 client={client?.name}
-                                                                                services={services}
+                                                                                services={services?.name}
                                                                                 amount={amount}
                                                                             ></TableLease>
                                                                             <td className="text-center align-middle">
                                                                                 <div className="btn-group align-top">
-                                                                                    <Link /* to={`/update/${_id}`} */ className="btn btn-sm btn-primary btn-outline-secondary badge">
+                                                                                    <Link to={`updateLease/${_id}`} className="btn btn-sm btn-primary btn-outline-secondary badge">
                                                                                         <button className="btn badge" type="button" data-toggle="modal" data-target="#user-form-modal">
                                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                                                                                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />

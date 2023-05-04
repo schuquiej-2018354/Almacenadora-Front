@@ -23,6 +23,7 @@ import { Redirigir } from './Pages/Redirigir';
 import { UpdateService } from './components/Update/UpdateService'
 import { LeasePage } from './Pages/LeasePage'
 import { AddLease } from './components/Add/AddLease'
+import { UpdateLease } from './components/Update/UpdateLease';
 
 export const AuthContext = createContext();
 
@@ -129,6 +130,10 @@ export const Index = () => {
                         {
                             path: 'lease/addLease',
                             element: <AddLease></AddLease>
+                        },
+                        {
+                            path: 'lease/updateLease/:id',
+                            element: <UpdateLease></UpdateLease>
                         }
                     ]
                 }

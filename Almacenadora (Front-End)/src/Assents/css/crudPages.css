@@ -1,4 +1,10 @@
+.searchFilter{
+  width: 30%;
+}
 
+.searcFilterHijo{
+  display: flex;
+}
 
 .e-panel {
   background-color: #fff;

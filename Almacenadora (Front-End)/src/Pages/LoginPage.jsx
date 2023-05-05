@@ -2,13 +2,13 @@ import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import Background from '../Assents/fondo.jpg'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../Index'
 
 
 export const LoginPage = () => {
 
-
-    const navigate = useNavigate();
-    const { setLoggedIn, loggedIn, setDataUser } = useContext()
+    const navigate = useNavigate()
+    const { setLoggedIn, loggedIn, setDataUser } = useContext(AuthContext)
 
     const [form, setform] = useState({
         username: '',
@@ -27,13 +27,16 @@ export const LoginPage = () => {
             e.preventDefault();
             const { data } = await axios.post('http://localhost:3200/user/login', form)
             if (data.token) {
+                setLoggedIn(true)
                 localStorage.setItem("token", data.token)
             }
+            navigate('/crud')
             alert(data.message);
         } catch (e) {
             alert('Invalid Credentials');
         }
     }
+
     return (
         <>
             <section className="">
@@ -54,7 +57,7 @@ export const LoginPage = () => {
                                     <span className="text-primary">KINAL</span>
                                 </h1>
                                 <p style={{ color: 'hsl(217, 10%, 50.8%)' }}>
-                                    Ingresa tu nombre de usuario y contraseñapara acceder a las funcionalidades
+                                    Ingresa tu nombre de usuario y contraseña para acceder a las funcionalidades
                                 </p>
                             </div>
                             <div className="col-lg-6 mb-5 mb-lg-0"
@@ -78,16 +81,20 @@ export const LoginPage = () => {
                                                 <input onChange={loginHandlChange} type="password" id="form3Example4" className="form-control" name="password" />
                                                 <label className="form-label" htmlFor="form3Example4">Password</label>
                                             </div>
-                                            <Link to={'/'}>
-                                                <button onClick={(e) => login(e)} className="btn btn-primary btn-block mb-6">
-                                                    Sign up
-                                                </button>
-                                            </Link>
-                                            <Link to={'/'}>
-                                                <button className="btn btn-primary btn-block mb-6">
-                                                    Cancel
-                                                </button>
-                                            </Link>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <div>
+                                                    <button onClick={(e) => login(e)} className="btn btn-primary btn-block mb-6">
+                                                        Sign up
+                                                    </button>
+                                                </div>
+                                                <div>
+                                                    <Link to={'/'}>
+                                                        <button className="btn btn-primary btn-block mb-6">
+                                                            Cancel
+                                                        </button>
+                                                    </Link>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

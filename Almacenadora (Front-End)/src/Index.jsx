@@ -21,6 +21,10 @@ import { ServicesPage } from './Pages/ServicesPage';
 import { AddService } from './components/Add/AddService';
 import { Redirigir } from './Pages/Redirigir';
 import { UpdateService } from './components/Update/UpdateService'
+import { LeasePage } from './Pages/LeasePage'
+import { AddLease } from './components/Add/AddLease'
+import { UpdateLease } from './components/Update/UpdateLease';
+
 export const AuthContext = createContext();
 
 export const Index = () => {
@@ -60,16 +64,16 @@ export const Index = () => {
                     element: <RegisterPage></RegisterPage>
                 },
                 {
-                    path: '/profile',
-                    element: <ProfilePage></ProfilePage>
-                },
-                {
-                    path: '/crud',   
+                    path: '/crud',
                     element: <Redirigir></Redirigir>,
                     children: [
                         {
                             path: '',
                             element: <CrudPage></CrudPage>
+                        },
+                        {
+                            path: 'profile',
+                            element: <ProfilePage></ProfilePage>
                         },
                         {
                             path: 'cellars',
@@ -118,6 +122,18 @@ export const Index = () => {
                         {
                             path: 'services/update/:id',
                             element: <UpdateService></UpdateService>
+                        },
+                        {
+                            path: 'lease',
+                            element: <LeasePage></LeasePage>
+                        },
+                        {
+                            path: 'lease/addLease',
+                            element: <AddLease></AddLease>
+                        },
+                        {
+                            path: 'lease/updateLease/:id',
+                            element: <UpdateLease></UpdateLease>
                         }
                     ]
                 }
@@ -126,6 +142,8 @@ export const Index = () => {
     ])
 
     return (
-        <RouterProvider router={routes} />
+        <AuthContext.Provider value={{ setLoggedIn, loggedIn }}>
+            <RouterProvider router={routes} />
+        </AuthContext.Provider>
     )
 }

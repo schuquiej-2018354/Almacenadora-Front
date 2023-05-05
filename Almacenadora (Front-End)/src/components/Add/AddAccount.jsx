@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
 
 export const AddAccount = () => {
     const [form, setForm] = useState({
@@ -22,9 +24,15 @@ export const AddAccount = () => {
     const add = async (e) => {
         try {
             const { data } = await axios.post('http://localhost:3200/account/addAccount', form)
-            alert(data.message)
+            Swal.fire({
+                icon: 'success',
+                title: data.message
+            })
         } catch (e) {
-            console.log(e);
+            Swal.fire({
+                icon: 'error',
+                title: e.response.data.message
+            })
         }
     }
 

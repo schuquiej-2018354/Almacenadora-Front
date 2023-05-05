@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export const AddService = () => {
     const [form, setForm] = useState({
@@ -9,30 +10,36 @@ export const AddService = () => {
         description: ''
     })
 
-    const handleChange =(e)=>{
+    const handleChange = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         })
     }
 
-    const add = async()=>{
-        try{
+    const add = async () => {
+        try {
             const { data } = await axios.post('http://localhost:3200/service/addAdditional', form)
-            alert(data.message)
-        }catch(e){
-            console.log(e);
+            Swal.fire({
+                icon: 'success',
+                title: data.message
+            })
+        } catch (e) {
+            Swal.fire({
+                icon: 'error',
+                title: e.response.data.message
+            })
         }
     }
     return (
         <>
-        <nav className="navbar navbar-expand-lg navbar-light" style={{background: "#1abc9c"}}>
+            <nav className="navbar navbar-expand-lg navbar-light" style={{ background: "#1abc9c" }}>
                 <div className="container-fluid">
                     <div className="collapse navbar-collapse justify-content-center" id="navbarCenteredExample" >
-                        <h1 className='text-white' style={{fontSize: "2.5rem"}}>Add Additional Service</h1>
+                        <h1 className='text-white' style={{ fontSize: "2.5rem" }}>Add Additional Service</h1>
                     </div>
                 </div>
-            </nav> 
+            </nav>
             <br />
             <section className="vh-100" /* style="background-color: #2779e2;" */>
                 <div className="container h-100">
@@ -51,7 +58,7 @@ export const AddService = () => {
                                             <h6 className="mb-0">Price</h6><br />
                                             <input onChange={handleChange} name='price' type="text" className="form-control form-control-lg" />
                                         </div>
-                                    </div>                                    
+                                    </div>
                                     <hr className="mx-n3" />
                                     <div className="row align-items-center py-3">
                                         <div className="col-md-3 ps-5">
@@ -66,12 +73,12 @@ export const AddService = () => {
                                         <div className="row">
                                             <div className="col">
                                                 <Link to={'/crud/services'}>
-                                                    <button onClick={(e)=> add(e)} type="submit" className="btn btn-primary btn-lg">Add</button>
+                                                    <button onClick={(e) => add(e)} type="submit" className="btn btn-primary btn-lg">Add</button>
                                                 </Link>
                                             </div>
                                             <div className="col">
                                                 <Link to={'/crud/services'}>
-                                                <button type="submit" className="btn btn-danger btn-lg">Cancel</button>
+                                                    <button type="submit" className="btn btn-danger btn-lg">Cancel</button>
                                                 </Link>
                                             </div>
                                         </div>

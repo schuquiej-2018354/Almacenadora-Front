@@ -46,7 +46,7 @@ export const CellarsPage = () => {
                 getTableCellars()
             }
         } catch (e) {
-            console.log(e);
+            console.log(e.response.data.message)
         }
     }
 

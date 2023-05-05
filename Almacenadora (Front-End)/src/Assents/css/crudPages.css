@@ -118,7 +118,7 @@
   color: #ffffff;
   font-weight: bold;
   padding: 5px 25px;
-  border: 2px solid #5b9b60;
+  border: 2px solid red;
   border-radius: 15px;
   transition: all 0.3s ease;
 }
@@ -126,5 +126,5 @@
 .exit:hover {
   background-color: #fff;
   color: #ff0000;
-  border: 2px solid #5b9b60;
+  border: 2px solid red;
 }

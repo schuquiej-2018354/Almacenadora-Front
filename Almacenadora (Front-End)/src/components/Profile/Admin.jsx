@@ -20,53 +20,40 @@ export const Admin = ({ name, surname, username, password, phone, role }) => {
                                     <div className="row">
                                         <div className="col">
                                             <div className="form-group">
-                                                <label>{name}</label>
-                                                <input className="form-control" type="text" name="name" placeholder="John Smith" defaultValue="John Smith" />
+                                                <label>Name</label>
+                                                <input defaultValue={name} className="form-control" type="text" />
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="form-group">
-                                                <label>{surname}</label>
-                                                <input className="form-control" type="text" name="username" placeholder="johnny.s" defaultValue="johnny.s" />
+                                                <label>Surname</label>
+                                                <input defaultValue={surname} className="form-control" type="text" />
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="form-group">
+                                            <label>Username</label>
+                                            <input defaultValue={username} className="form-control" type="text"/>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col">
                                             <div className="form-group">
-                                                <label>{phone}</label>
-                                                <input className="form-control" type="text" name="name" placeholder="John Smith" defaultValue="John Smith" />
+                                                <label>Phone</label>
+                                                <input defaultValue={phone} className="form-control" type="text"/>
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="form-group">
-                                                <label>{role}</label>
-                                                <input className="form-control" type="text" name="username" placeholder="johnny.s" defaultValue="johnny.s" />
+                                                <label>Role</label>
+                                                <input defaultValue={role} className="form-control" type="text"/>
                                             </div>
                                         </div>
-                                    </div>
-                                    {/* <div className="row">
-                                                                    <div className="col">
-                                                                        <div className="form-group">
-                                                                            <label>Email</label>
-                                                                            <input className="form-control" type="text" placeholder="user@example.com" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div> */}
+                                    </div>  
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="col-12 col-sm-6 mb-3">
-                                    <div className="row">
-                                        <div className="col">
-                                            <div className="form-group">
-                                                <label>{password}</label>
-                                                <input className="form-control" type="password" placeholder="••••••" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <br />
                             <div className="row">
                                 <div className="col d-flex justify-content-end">
                                     <button className="btn btn-primary" type="submit">Save Changes</button>

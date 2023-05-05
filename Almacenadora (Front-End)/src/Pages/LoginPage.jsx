@@ -3,6 +3,7 @@ import axios from 'axios'
 import Background from '../Assents/fondo.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Index'
+import Swal from 'sweetalert2'
 
 
 export const LoginPage = () => {
@@ -25,15 +26,26 @@ export const LoginPage = () => {
     const login = async (e) => {
         try {
             e.preventDefault();
-            const { data } = await axios.post('http://localhost:3200/user/login', form)
+            const { data } = await axios.post('http://localhost:3200/account/login', form)
             if (data.token) {
                 setLoggedIn(true)
                 localStorage.setItem("token", data.token)
+                setDataUser({
+                    name: data.userLogged.name,
+                    username: data.userLogged.username,
+                    role: data.userLogged.role
+                })
             }
-            navigate('/crud')
-            alert(data.message);
+            Swal.fire({
+                icon: 'success',
+                title: data.message
+            })
+            navigate('/crud/lease')
         } catch (e) {
-            alert('Invalid Credentials');
+            Swal.fire({
+                icon: 'error',
+                title: e.response.data.message
+            })
         }
     }
 

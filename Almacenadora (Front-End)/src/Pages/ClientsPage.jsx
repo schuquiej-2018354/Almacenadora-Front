@@ -7,6 +7,8 @@ import { Outlet } from 'react-router-dom'
 import '../Assents/css/crudPages.css'
 import { NavBarAdmin } from '../components/NavBarAdmin/NavBarAdmin';
 
+import Swal from 'sweetalert2'
+
 export const ClientsPage = () => {
     const [clients, setClients] = useState([{}])
     const [tableClients, setTableClients] = useState([{}])
@@ -42,11 +44,11 @@ export const ClientsPage = () => {
             let confirmDelete = confirm("Are you sure you want to delete this hold?")
             if (confirmDelete) {
                 const { data } = await axios.delete(`http://localhost:3200/client/delete/${id}`)
-                console.log(data);
+                alert(data.message)
                 getTableClients()
             }
         } catch (e) {
-            console.log(e);
+            console.log(e.response.data.message)
         }
     }
 

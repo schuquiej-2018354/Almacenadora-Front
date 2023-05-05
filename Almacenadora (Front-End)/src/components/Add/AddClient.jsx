@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export const AddClient = () => {
 
@@ -21,9 +22,15 @@ export const AddClient = () => {
     const add = async (e) => {
         try {
             const { data } = await axios.post('http://localhost:3200/client/add', form)
-            alert(data.message)
+            Swal.fire({
+                icon: 'success',
+                title: data.message
+            })
         } catch (e) {
-            console.log(e);
+            Swal.fire({
+                icon: 'error',
+                title: e.response.data.message
+            })
         }
     }
 
@@ -38,7 +45,7 @@ export const AddClient = () => {
                 </div>
             </nav>
             <br />
-            <section className="vh-100" style={{ background: "#f8f8f8", paddingTop: '0px'}}>
+            <section className="vh-100" style={{ background: "#f8f8f8", paddingTop: '0px' }}>
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-xl-9">

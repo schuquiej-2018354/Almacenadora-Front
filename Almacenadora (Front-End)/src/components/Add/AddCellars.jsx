@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 
 export const AddCellars = () => {
@@ -24,9 +25,15 @@ export const AddCellars = () => {
     const add = async (e) => {
         try {
             const { data } = await axios.post('http://localhost:3200/cellar/add', form)
-            alert(data.message)
+            Swal.fire({
+                icon: 'success',
+                title: data.message
+            })
         } catch (e) {
-            console.log(e);
+            Swal.fire({
+                icon: 'error',
+                title: e.response.data.message
+            })
         }
     }
 
@@ -69,7 +76,7 @@ export const AddCellars = () => {
                                         </div>
                                         <div className="col pe-5">
                                             <h6 className="mb-0">Availability</h6><br />
-                                            <select name="availability" id="availability" onChange={handleChange}>
+                                            <select className='form-control' name="availability" id="availability" onChange={handleChange}>
                                                 <option value="No disponible" >No disponible</option>
                                                 <option value="Disponible" >Disponible</option>
                                             </select>
@@ -82,15 +89,6 @@ export const AddCellars = () => {
                                         </div>
                                         <div className="col-md-9 pe-5">
                                             <textarea onChange={handleChange} name='description' className="form-control" rows="3" placeholder="Message sent to the employer"></textarea>
-                                        </div>
-                                    </div>
-                                    <hr className="mx-n3" />
-                                    <div className="row align-items-center py-3">
-                                        <div className="col-md- pe-5">
-                                            <h6 className="mb-0">Photo</h6><br />
-                                            <input className="form-control form-control-lg" id="formFileLg" type="file" />
-                                            <div className="small text-muted mt-2">Upload your CV/Resume or any other relevant file. Max file
-                                                size 50 MB</div>
                                         </div>
                                     </div>
                                     <hr className="mx-n3" />

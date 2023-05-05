@@ -51,7 +51,7 @@ export const ServicesPage = () => {
                                 <div className="e-panel card">
                                     <div className="card-body">
                                         <div className="card-title">
-                                            <p className="text-center fs-1">SERVICES</p><h4><small className="px-1">Be a wise leader</small></h4>
+                                            <p className="text-center fs-1">SERVICES</p>
                                         </div>
                                         <div className="row align-items-center pt-4 pb-3">
                                             <div className="col-md-4 form-floating mb-3">

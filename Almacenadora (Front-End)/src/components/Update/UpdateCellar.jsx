@@ -2,15 +2,16 @@ import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export const UpdateCellar = () => {
-    
+
     const [tableCellar, setTableCellar] = useState([{}])
     const { id } = useParams();
 
     const getTableCellar = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:3200/cellar/getById/${id}`);
+            const { data } = await axios(`http://localhost:3200/cellar/getById/${id}`);
             setTableCellar(data.cellar)
         } catch (e) {
             console.log(e);
@@ -28,21 +29,33 @@ export const UpdateCellar = () => {
                 price: document.getElementById('inputPrice').value
             }
             const { data } = await axios.put(`http://localhost:3200/cellar/update/${id}`, updatedCellar)
-            /* console.log(`${data.message} ${data.updatedCellar.name}`); */
+            Swal.fire({
+                icon: 'success',
+                title: data.message
+            })
         } catch (e) {
-            console.error(e);
-            
+            Swal.fire({
+                icon: 'error',
+                title: e.response.data.message
+            })
         }
     }
 
     useEffect(() => getTableCellar, [])
     return (
         <>
+            <nav className="navbar navbar-expand-lg navbar-light" style={{ background: "#1abc9c" }}>
+                <div className="container-fluid">
+                    <div className="collapse navbar-collapse justify-content-center" id="navbarCenteredExample" >
+                        <h1 className='text-white' style={{ fontSize: "2.5rem" }}>Update Cellars</h1>
+                    </div>
+                </div>
+            </nav>
+            <br />
             <section className="vh-100" /* style="background-color: #2779e2;" */>
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-xl-9">
-                            <h1 className="text-white mb-4">Update Cellar</h1>
                             <div className="card" /* style="border-radius: 15px;" */>
                                 <div className="card-body">
                                     <div className="row align-items-center pt-4 pb-3">
@@ -81,22 +94,13 @@ export const UpdateCellar = () => {
                                         </div>
                                     </div>
                                     <hr className="mx-n3" />
-                                    <div className="row align-items-center py-3">
-                                        <div className="col-md- pe-5">
-                                            <h6 className="mb-0">Photo</h6>
-                                            <input className="form-control form-control-lg" id="formFileLg" type="file" />
-                                            <div className="small text-muted mt-2">Upload your CV/Resume or any other relevant file. Max file
-                                                size 50 MB</div>
-                                        </div>
-                                    </div>
-                                    <hr className="mx-n3" />
                                     <div className="px-5 py-4">
                                         <div className="row">
-                                                <div className="col">
-                                                    <Link to={'/crud/cellars'}>
-                                                        <button onClick={() => updateCellar()} type="submit" className="btn btn-primary btn-lg">Update</button>
-                                                    </Link>
-                                                </div>
+                                            <div className="col">
+                                                <Link to={'/crud/cellars'}>
+                                                    <button onClick={() => updateCellar()} type="submit" className="btn btn-primary btn-lg">Update</button>
+                                                </Link>
+                                            </div>
                                             <div className="col">
                                                 <Link to={'/crud/cellars'}>
                                                     <button type="submit" className="btn btn-danger btn-lg">Cancel</button>

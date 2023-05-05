@@ -24,6 +24,7 @@ import { UpdateService } from './components/Update/UpdateService'
 import { LeasePage } from './Pages/LeasePage'
 import { AddLease } from './components/Add/AddLease'
 import { UpdateLease } from './components/Update/UpdateLease';
+import { useContext } from 'react';
 
 export const AuthContext = createContext();
 
@@ -64,16 +65,16 @@ export const Index = () => {
                     element: <RegisterPage></RegisterPage>
                 },
                 {
-                    path: '/profile',
-                    element: <ProfilePage></ProfilePage>
-                },
-                {
                     path: '/crud',
-                    element: <Redirigir></Redirigir>,
+                    element: loggedIn ? <Redirigir></Redirigir> : <LoginPage></LoginPage>,
                     children: [
                         {
                             path: '',
                             element: <CrudPage></CrudPage>
+                        },
+                        {
+                            path: 'profile',
+                            element: <ProfilePage></ProfilePage>
                         },
                         {
                             path: 'cellars',
@@ -142,7 +143,7 @@ export const Index = () => {
     ])
 
     return (
-        <AuthContext.Provider value={{ setLoggedIn, loggedIn }}>
+        <AuthContext.Provider value={{ loggedIn, setLoggedIn, dataUser, setDataUser }}>
             <RouterProvider router={routes} />
         </AuthContext.Provider>
     )

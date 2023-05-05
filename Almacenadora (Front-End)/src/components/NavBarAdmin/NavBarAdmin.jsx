@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../NavBarAdmin/NavBarAdmin.css"
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Index";
+
 export const NavBarAdmin = () => {
+
+    const navigate = useNavigate();
+    const { dataUser } = useContext(AuthContext)
+
+    const logOut = () => {
+        localStorage.clear()
+        navigate('/')
+        location.reload()
+    }
 
     return (
         <><br />
@@ -61,20 +73,27 @@ export const NavBarAdmin = () => {
             <div className="menu">
                 <div className="s row align-items-center pt-4 pb-3">
                     <div className="y nav nav-pills col-md-4 ">
-                        <Link to={"/"} className="nav-link">
+                        <Link to={"/crud/profile"} className="nav-link">
                             <p className="nav-item">Profile</p>
                         </Link>
+                        {
+                            dataUser.role == 'ADMIN' ? (
+                                <Link to={"/crud"} className="nav-link">
+                                    <p className="nav-item">Options</p>
+                                </Link>
+                            ) : <></>
+                        }
                         <Link to={'/crud/lease'} className="nav-link">
                             <p className="nav-item">Leasses</p>
                         </Link>
                     </div>
-                    <div className="i nav nav-pills col-md-4 ">
-                        <Link to={"/home"} className="nav-link">
+                    <div className="i nav nav-pills col-md-4">
+                        <Link onClick={() => logOut()} className="nav-link">
                             <p className="nav-item">LogOut</p>
                         </Link>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

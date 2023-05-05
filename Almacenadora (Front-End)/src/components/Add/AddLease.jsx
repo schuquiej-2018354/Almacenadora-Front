@@ -2,11 +2,20 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export const AddLease = () => {
     const [cellars, setCellars] = useState([{}])
     const [clients, setClients] = useState([{}])
     const [services, setServices] = useState([{}])
+    const [array, setArray] = useState([]);
+    const [disabledButtons, setDisabledButtons] = useState([]);
+
+
+    const handleClick = () => {
+        setButtonText('Â¡agregado!');
+        setButtonColor('green');
+    }
 
     const getCellars = async () => {
         try {
@@ -16,6 +25,7 @@ export const AddLease = () => {
             console.log(e);
         }
     }
+
 
     const getClient = async () => {
         try {
@@ -40,13 +50,39 @@ export const AddLease = () => {
             let lease = {
                 cellar: document.getElementById('inputCellar').value,
                 client: document.getElementById('inputClient').value,
-                services: document.getElementById('inputServices').value
+                services: array
             }
             const { data } = await axios.post('http://localhost:3200/lease/add', lease);
-            alert(data.message);
+            Swal.fire({
+                icon: 'success',
+                title: data.message
+            })
         } catch (e) {
-            console.error(e)
+            Swal.fire({
+                icon: 'error',
+                title: e.response.data.message
+            })
         }
+    }
+
+    const arrayServices = (id, index) => {
+        setArray([
+            ...array,
+            id
+        ]);
+        setDisabledButtons([...disabledButtons, index]);
+        console.log(array);
+    }
+
+    const deleteArrayService = (id, index) => {
+        let posicion = array.indexOf(id);
+        if (posicion !== -1) {
+            const newArray = [...array];
+            newArray.splice(posicion, 1);
+            setArray(newArray);
+        }
+        setDisabledButtons(disabledButtons.filter((i) => i !== index));
+        console.log(array);
     }
 
     useEffect(() => getCellars, [])
@@ -95,30 +131,45 @@ export const AddLease = () => {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="col form-group">
-                                                <label htmlFor="inputServices">Additional services:</label>
-                                                <select className="form-control" id="inputServices" required>
-                                                    {
-                                                        services.map(({ _id, name }, i) => {
-                                                            return (
-                                                                <option key={i} value={_id}>{name}</option>
-                                                            )
-                                                        })
-                                                    }
-                                                </select>
-                                            </div>
-                                        </div>
                                         <br />
-                                        <center>
-                                            <Link to={'/crud/lease'}>
-                                                <button onClick={() => addLease()} type="submit" className="btn btn-success btn-lg">Lease</button>
-                                            </Link>
-                                            <Link to={'/crud/lease'}>
-                                                <button type="submit" className="btn btn-danger btn-lg">Cancel</button>
-                                            </Link>
-                                        </center>
                                     </form>
+                                    <div className="table-responsive table-lg mt-3">
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Price</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    services.map(({ _id, name, price, color }, index) => {
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td>{name}</td>
+                                                                <td>{price}</td>
+                                                                <td className="text-center align-middle">
+                                                                    <div className="btn-group align-top">
+                                                                        <button onClick={() => arrayServices(_id, index)} disabled={disabledButtons.includes(index)} className={`btn btn-primary`}>Agregar</button>
+                                                                        <button onClick={() => deleteArrayService(_id, index)} className='btn btn-danger'>Cancelar</button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <center>
+                                        <Link to={'/crud/lease'}>
+                                            <button onClick={() => addLease()} type="submit" className="btn btn-success btn-lg">Lease</button>
+                                        </Link>
+                                        <Link to={'/crud/lease'}>
+                                            <button type="submit" className="btn btn-danger btn-lg">Cancel</button>
+                                        </Link>
+                                    </center>
                                 </div>
                             </div>
                         </div>
@@ -128,3 +179,5 @@ export const AddLease = () => {
         </>
     )
 }
+
+export default AddLease;

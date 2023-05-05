@@ -3,9 +3,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-
-
 export const UpdateCellar = () => {
+    
     const [tableCellar, setTableCellar] = useState([{}])
     const { id } = useParams();
 

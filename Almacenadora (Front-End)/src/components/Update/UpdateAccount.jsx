@@ -24,7 +24,6 @@ export const UpdateAccount = () => {
                 name: document.getElementById('inputName').value,
                 surname: document.getElementById('inputSurname').value,
                 username: document.getElementById('inputUsername').value,
-                password: document.getElementById('inputPassword').value,
                 email: document.getElementById('inputEmail').value,
                 phone: document.getElementById('inputPhone').value                
             }
@@ -69,13 +68,6 @@ export const UpdateAccount = () => {
                                         <div className="col pe-5">
                                             <h6 className="mb-0">Phone</h6>
                                             <input defaultValue={tableAccounts.phone} name='phone' type="text" className="form-control form-control-lg" id='inputPhone'/>
-                                        </div>
-                                    </div>
-                                    <hr className="mx-n3" />
-                                    <div className="row align-items-center pt-4 pb-3">
-                                        <div className="col-md- pe-5">
-                                            <h6 className="mb-0">Password</h6>
-                                            <input defaultValue={tableAccounts.password} name='password' type="text" className="form-control form-control-lg" id='inputPassword'/>
                                         </div>
                                     </div>
                                     <hr className="mx-n3" />

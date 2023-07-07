@@ -96,11 +96,6 @@ export const UpdateCellar = () => {
                                     <hr className="mx-n3" />
                                     <div className="px-5 py-4">
                                         <div className="row">
-                                                <div className="col">
-                                                    <Link to={'/crud/cellars'}>
-                                                        <button onClick={() => updateCellar()} type="submit" className="btn btn-primary btn-lg">Update</button>
-                                                    </Link>
-                                                </div>
                                             <div className="col">
                                                 <Link to={'/crud/cellars'}>
                                                     <button onClick={() => updateCellar()} type="submit" className="btn btn-primary btn-lg">Update</button>

@@ -1,26 +1,31 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import { AccountPage } from './Pages/AccountPage';
-import { CellarsPage } from './Pages/CellarsPage';
-import { ClientsPage } from './Pages/ClientsPage';
-import { CrudPage } from './Pages/CrudPage';
-import { HomePage } from './Pages/HomePage';
-import { LoginPage } from './Pages/LoginPage';
-import { MainPage } from './Pages/MainPage/MainPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { NotFoundPage } from './Pages/NotFoundPage';
-import { ProfilePage } from './Pages/ProfilePage';
-import { Redirigir } from './Pages/Redirigir';
+import { MainPage } from './Pages/MainPage/MainPage';
+import { LoginPage } from './Pages/LoginPage';
+import { HomePage } from './Pages/HomePage'
 import { RegisterPage } from './Pages/RegisterPage';
-import { ServicesPage } from './Pages/ServicesPage';
-import { AddAccount } from './components/Add/AddAccount';
+import { ProfilePage } from './Pages/ProfilePage';
+import { CrudPage } from './Pages/CrudPage';
+import { CellarsPage } from './Pages/CellarsPage';
 import { AddCellars } from './components/Add/AddCellars';
-import { AddClient } from './components/Add/AddClient';
-import { AddService } from './components/Add/AddService';
-import { UpdateAccount } from './components/Update/UpdateAccount';
 import { UpdateCellar } from './components/Update/UpdateCellar';
+import { ClientsPage } from './Pages/ClientsPage';
+import { AddClient } from './components/Add/AddClient';
 import { UpdateClient } from './components/Update/UpdateClient';
-import { UpdateService } from './components/Update/UpdateService';
+import { AccountPage } from './Pages/AccountPage';
+import { AddAccount } from './components/Add/AddAccount';
+import { UpdateAccount } from './components/Update/UpdateAccount';
+import { ServicesPage } from './Pages/ServicesPage';
+import { AddService } from './components/Add/AddService';
+import { Redirigir } from './Pages/Redirigir';
+import { UpdateService } from './components/Update/UpdateService'
+import { LeasePage } from './Pages/LeasePage'
+import { AddLease } from './components/Add/AddLease'
+import { UpdateLease } from './components/Update/UpdateLease';
+import { useContext } from 'react';
+
 export const AuthContext = createContext();
 
 export const Index = () => {
@@ -64,12 +69,16 @@ export const Index = () => {
                     element: <ProfilePage></ProfilePage>
                 },
                 {
-                    path: '/crud',   
-                    element: <Redirigir></Redirigir>,
+                    path: '/crud',
+                    element: loggedIn ? <Redirigir></Redirigir> : <LoginPage></LoginPage>,
                     children: [
                         {
                             path: '',
                             element: <CrudPage></CrudPage>
+                        },
+                        {
+                            path: 'profile',
+                            element: <ProfilePage></ProfilePage>
                         },
                         {
                             path: 'cellars',
@@ -118,6 +127,18 @@ export const Index = () => {
                         {
                             path: 'services/update/:id',
                             element: <UpdateService></UpdateService>
+                        },
+                        {
+                            path: 'lease',
+                            element: <LeasePage></LeasePage>
+                        },
+                        {
+                            path: 'lease/addLease',
+                            element: <AddLease></AddLease>
+                        },
+                        {
+                            path: 'lease/updateLease/:id',
+                            element: <UpdateLease></UpdateLease>
                         }
                     ]
                 }
@@ -126,6 +147,8 @@ export const Index = () => {
     ])
 
     return (
-        <RouterProvider router={routes} />
+        <AuthContext.Provider value={{ loggedIn, setLoggedIn, dataUser, setDataUser }}>
+            <RouterProvider router={routes} />
+        </AuthContext.Provider>
     )
 }

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 
 export const AddCellars = () => {
@@ -16,7 +17,8 @@ export const AddCellars = () => {
     const handleChange = (e) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            availability: document.getElementById("availability").value
         })
         console.log(form);
     }
@@ -24,22 +26,27 @@ export const AddCellars = () => {
     const add = async (e) => {
         try {
             const { data } = await axios.post('http://localhost:3200/cellar/add', form)
-            alert(data.message)
-            console.log('Added');
+            Swal.fire({
+                icon: 'success',
+                title: data.message
+            })
         } catch (e) {
-            console.log(e);
+            Swal.fire({
+                icon: 'error',
+                title: e.response.data.message
+            })
         }
     }
 
     return (
         <>
-            <nav class="navbar navbar-expand-lg navbar-light" style={{background: "#1abc9c"}}>
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample" >
-                        <h1 className='text-white' style={{fontSize: "2.5rem"}}>Add Cellars</h1>
+            <nav className="navbar navbar-expand-lg navbar-light" style={{ background: "#1abc9c" }}>
+                <div className="container-fluid">
+                    <div className="collapse navbar-collapse justify-content-center" id="navbarCenteredExample" >
+                        <h1 className='text-white' style={{ fontSize: "2.5rem" }}>Add Cellars</h1>
                     </div>
                 </div>
-            </nav> 
+            </nav>
             <br />
             <section className="vh-100" style={{ background: "#f8f8f8" }} /* style="background-color: #2779e2;" */>
                 <div className="container h-100">
@@ -49,28 +56,31 @@ export const AddCellars = () => {
                                 <div className="card-body">
                                     <div className="row align-items-center pt-4 pb-3">
                                         <div className="col-md- pe-5">
-                                            <h6 className="mb-0">Name</h6>
+                                            <h6 className="mb-0">Name</h6><br />
                                             <input onChange={handleChange} name='name' type="text" className="form-control form-control-lg" />
                                         </div>
                                     </div>
                                     <div className="row align-items-center pt-4 pb-3">
                                         <div className="col pe-5">
-                                            <h6 className="mb-0">Size</h6>
+                                            <h6 className="mb-0">Size</h6><br />
                                             <input onChange={handleChange} name='size' type="text" className="form-control form-control-lg" />
                                         </div>
                                         <div className="col pe-5">
-                                            <h6 className="mb-0">Price</h6>
+                                            <h6 className="mb-0">Price</h6><br />
                                             <input onChange={handleChange} name='price' type="text" className="form-control form-control-lg" />
                                         </div>
                                     </div>
                                     <div className="row align-items-center pt-4 pb-3">
                                         <div className="col pe-5">
-                                            <h6 className="mb-0">Location</h6>
+                                            <h6 className="mb-0">Location</h6><br />
                                             <input onChange={handleChange} name='location' type="text" className="form-control form-control-lg" />
                                         </div>
                                         <div className="col pe-5">
-                                            <h6 className="mb-0">Availability</h6>
-                                            <input onChange={handleChange} name='availability' type="text" className="form-control form-control-lg" />
+                                            <h6 className="mb-0">Availability</h6><br />
+                                            <select className='form-control' name="availability" id="availability" onChange={handleChange}>
+                                                <option value="No disponible" >No disponible</option>
+                                                <option value="Disponible" >Disponible</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <hr className="mx-n3" />
@@ -80,15 +90,6 @@ export const AddCellars = () => {
                                         </div>
                                         <div className="col-md-9 pe-5">
                                             <textarea onChange={handleChange} name='description' className="form-control" rows="3" placeholder="Message sent to the employer"></textarea>
-                                        </div>
-                                    </div>
-                                    <hr className="mx-n3" />
-                                    <div className="row align-items-center py-3">
-                                        <div className="col-md- pe-5">
-                                            <h6 className="mb-0">Photo</h6>
-                                            <input className="form-control form-control-lg" id="formFileLg" type="file" />
-                                            <div className="small text-muted mt-2">Upload your CV/Resume or any other relevant file. Max file
-                                                size 50 MB</div>
                                         </div>
                                     </div>
                                     <hr className="mx-n3" />

@@ -20,7 +20,6 @@ export const AddCellars = () => {
             [e.target.name]: e.target.value,
             availability: document.getElementById("availability").value
         })
-        console.log(form);
     }
 
     const add = async (e) => {

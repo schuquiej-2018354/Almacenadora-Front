@@ -18,7 +18,6 @@ export const ServicesPage = () => {
             const { data } = await axios.get('http://localhost:3200/service/getAdditional');
             setServices(data.additional)
             setTableServices(data.additional)
-            console.log(data.additional);
         } catch (e) {
             console.log(e);
         }

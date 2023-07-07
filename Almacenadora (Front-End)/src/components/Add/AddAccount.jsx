@@ -10,7 +10,6 @@ export const AddAccount = () => {
         password: '',
         email: '',
         phone: ''
-        /* role: '' */
     })
 
     const handleChange = (e)=>{
@@ -21,7 +20,7 @@ export const AddAccount = () => {
         console.log(form);
     }
 
-    const add = async(e)=>{
+    const add = async()=>{
         try{
             /* e.preventDefault() */
             const { data } = await axios.post('http://localhost:3200/account/addAccount', form)

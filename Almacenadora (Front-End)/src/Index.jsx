@@ -1,26 +1,26 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { NotFoundPage } from './Pages/NotFoundPage';
-import { MainPage } from './Pages/MainPage/MainPage';
-import { LoginPage } from './Pages/LoginPage';
-import { HomePage } from './Pages/HomePage'
-import { RegisterPage } from './Pages/RegisterPage';
-import { ProfilePage } from './Pages/ProfilePage';
-import { CrudPage } from './Pages/CrudPage';
-import { CellarsPage } from './Pages/CellarsPage';
-import { AddCellars } from './components/Add/AddCellars';
-import { UpdateCellar } from './components/Update/UpdateCellar';
-import { ClientsPage } from './Pages/ClientsPage';
-import { AddClient } from './components/Add/AddClient';
-import { UpdateClient } from './components/Update/UpdateClient';
 import { AccountPage } from './Pages/AccountPage';
-import { AddAccount } from './components/Add/AddAccount';
-import { UpdateAccount } from './components/Update/UpdateAccount';
-import { ServicesPage } from './Pages/ServicesPage';
-import { AddService } from './components/Add/AddService';
+import { CellarsPage } from './Pages/CellarsPage';
+import { ClientsPage } from './Pages/ClientsPage';
+import { CrudPage } from './Pages/CrudPage';
+import { HomePage } from './Pages/HomePage';
+import { LoginPage } from './Pages/LoginPage';
+import { MainPage } from './Pages/MainPage/MainPage';
+import { NotFoundPage } from './Pages/NotFoundPage';
+import { ProfilePage } from './Pages/ProfilePage';
 import { Redirigir } from './Pages/Redirigir';
-import { UpdateService } from './components/Update/UpdateService'
+import { RegisterPage } from './Pages/RegisterPage';
+import { ServicesPage } from './Pages/ServicesPage';
+import { AddAccount } from './components/Add/AddAccount';
+import { AddCellars } from './components/Add/AddCellars';
+import { AddClient } from './components/Add/AddClient';
+import { AddService } from './components/Add/AddService';
+import { UpdateAccount } from './components/Update/UpdateAccount';
+import { UpdateCellar } from './components/Update/UpdateCellar';
+import { UpdateClient } from './components/Update/UpdateClient';
+import { UpdateService } from './components/Update/UpdateService';
 export const AuthContext = createContext();
 
 export const Index = () => {

@@ -13,20 +13,21 @@ export const MainPage = () => {
       <Navbar></Navbar>
       <br />
       <main>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-        <section className="jumbotron text-center " style={{ backgroundImage: `url(${imageHeader})`, backgroundSize: 'cover', width: '100%', height: '100%' }}>
-          <div className="col-6 align-self-center">
-            <h1 className="display-4 text-white font-weight-bold" id='title'>Almacenadora KNL</h1>
-            <p className="lead text-light" id='info' style={{ marginBottom: '20px' }}>
-              Somos una empresa de almacenamiento líder en el mercado,
-              dedicada a proporcionar soluciones integrales de almacenamiento y gestión
-              de mercancías. Nuestro objetivo es ayudar a nuestros clientes a optimizar sus
-              operaciones logísticas y mejorar su eficiencia en la cadena de suministro.</p>
-            <Link to={'/login'} className="btn btn-warning btn-lg">
-              Log In
-            </Link>
+        <div className="jumbotron text-center " style={{ backgroundImage: `url(${imageHeader})`, backgroundSize: 'cover', width: '100%', height: '450px' }}>
+          <div className="r col-6 align-self-center" >
+            <div className='tor'>
+              <h1 className="display-4 text-white font-weight-bold" id='title'>Almacenadora KNL</h1>
+              <p className="lead text-light" id='info' style={{ marginBottom: '20px' }}>
+                Somos una empresa de almacenamiento líder en el mercado,
+                dedicada a proporcionar soluciones integrales de almacenamiento y gestión
+                de mercancías. Nuestro objetivo es ayudar a nuestros clientes a optimizar sus
+                operaciones logísticas y mejorar su eficiencia en la cadena de suministro.</p>
+              <Link to={'/login'} className="btn btn-warning btn-lg">
+                Log In
+              </Link>
+            </div>
           </div>
-        </section>
+        </div>
 
         <div className="container mt-5" style={{ marginBottom: '10vh' }}>
           <h1 className="text-center text-uppercase text-muted">Acerca de Nosotros</h1>
@@ -269,13 +270,14 @@ export const MainPage = () => {
                 <label htmlFor="star1"></label>
               </div>
               <div className="form-group">
-                <label htmlFor="nameInput">Nombre:</label>
+                <label htmlFor="nameInput">Nombre:</label><br /><br />
                 <input type="text" className="form-control" id="nameInput" placeholder="Ingresa tu nombre" />
-              </div>
+              </div><br />
               <div className="form-group">
-                <label htmlFor="commentInput">Comentario:</label>
-                <textarea className="form-control " id="commentInput" rows="3"></textarea>
+                <label htmlFor="commentInput">Comentario:</label><br /><br />
+                <textarea className="form-control " id="commentInput" rows="3" placeholder="Ingresa tu comentario "></textarea>
               </div>
+              <br />
               <center><button type="submit" className="btn btn-warning btn-lg">Enviar</button></center>
             </form>
           </div>

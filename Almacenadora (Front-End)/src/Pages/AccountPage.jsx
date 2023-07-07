@@ -1,30 +1,49 @@
 import React, { useEffect, useState } from 'react'
-import { Navbar } from '../components/NavBar/Navbar'    
+import { Navbar } from '../components/NavBar/Navbar'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { TableAccounts } from '../components/table/TableAccounts'
+import '../Assents/css/crudPages.css'
+import { NavBarAdmin } from '../components/NavBarAdmin/NavBarAdmin';
 
 export const AccountPage = () => {
+    const [account, setAccount] = useState([{}])
     const [tableAccounts, setTableAccounts] = useState([{}])
+    const [search, setSearch] = useState("")
 
     const getTableAccounts = async () => {
         try {
             const { data } = await axios.get('http://localhost:3200/account/getAccounts')
+            setAccount(data.accounts)
             setTableAccounts(data.accounts)
         } catch (e) {
             console.log(e);
         }
     }
 
-    const deleteAccount = async (id) =>{
-        try{
+    const handleChangeSearch = (e) => {
+        setSearch(e.target.value)
+        filtrar(e.target.value)
+    }
+
+    const filtrar = (searchTerm) => {
+        var resultSearch = tableAccounts.filter((elemento) => {
+            if (elemento.name.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
+                return elemento
+            }
+        })
+        setAccount(resultSearch)
+    }
+
+    const deleteAccount = async (id) => {
+        try {
             let confirmDelete = confirm("Are you sure you want to delete this hold?")
-            if(confirmDelete){
+            if (confirmDelete) {
                 const { data } = await axios.delete(`http://localhost:3200/account/deleteAccount/${id}`)
                 console.log(data);
                 getTableAccounts()
             }
-        }catch(e){
+        } catch (e) {
             console.log(e);
         }
     }
@@ -33,51 +52,39 @@ export const AccountPage = () => {
 
     return (
         <>
-            <Navbar></Navbar>
+            <NavBarAdmin></NavBarAdmin>
             <br />
             <div className="container">
                 <div className="row flex-lg-nowrap">
                     <div className="col">
-                        <div className="e-tabs mb-3 px-3">
-                            <ul className="nav nav-tabs">
-                                <li className="nav-item">
-                                    <Link to={'/crud/cellars'} className="nav-link active">
-                                        Cellars
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/crud/clients'} className="nav-link active">
-                                        Clients
-                                    </Link>
-                                </li>
-                                <li className="nav-item"><a className="nav-link active bg-info">Accounts</a></li>
-                                <li className="nav-item">
-                                    <Link to={'/crud/services'} className="nav-link active">
-                                        Services
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
                         <div className="row flex-lg-nowrap">
                             <div className="col mb-3">
                                 <div className="e-panel card">
                                     <div className="card-body">
                                         <div className="card-title">
-                                            <h6 className="mr-2"><span>Accounts</span><small className="px-1">Be a wise leader</small></h6>
+                                            <p className="text-center fs-1">ACCOUNTS</p>
                                         </div>
                                         <div className="row align-items-center pt-4 pb-3">
                                             <div className="col-md-4 form-floating mb-3">
-                                                <input id='inputSearch' className="form-control" type="text" placeholder="Name" defaultValue="" />
-                                                <label htmlFor='inputSearch'>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <input type="text" className="search-input" value={search} onChange={handleChangeSearch} placeholder="Search..." />
+                                                <a href="#" className="search-btn">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                                     </svg>
-                                                    Search
-                                                </label>
+                                                </a>
                                             </div>
                                             <div className="col-md-2 offset-md-6">
-                                                <Link to={'add'}>
-                                                    <button className="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">New Account</button>
+                                                <Link to={'add'} className="add">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                        <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z" />
+                                                    </svg>
+                                                </Link>
+                                                <Link to={'/crud'} className="exit">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                                        <path fillRule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                                                        <path fillRule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                                                    </svg>
                                                 </Link>
                                             </div>
                                         </div>
@@ -98,7 +105,7 @@ export const AccountPage = () => {
                                                         </thead>
                                                         <tbody>
                                                             {
-                                                                tableAccounts.map(({ _id, name, surname, username, email, phone, password, role }, index) => {
+                                                                account.map(({ _id, name, surname, username, email, phone, role }, index) => {
                                                                     return (
                                                                         <tr key={index}>
                                                                             <TableAccounts
